@@ -1,0 +1,12 @@
+<% if object.errors.any? %>
+<div id="error_explanation">
+    <div class="alert alert-danger" role='alert'>
+      错误信息:
+    <ul>
+        <% object.errors.messages.each do |field, msgs| %>
+        <li><%= msgs.first %></li>
+        <% end %>
+    </ul>
+    </div>
+</div>
+<% end %>

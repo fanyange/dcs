@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @instruction.content %>
+</p>
+
+<p>
+  <strong>Deadline:</strong>
+  <%= @instruction.deadline %>
+</p>
+
+<p>
+  <strong>Document:</strong>
+  <%= @instruction.document_id %>
+</p>
+
+<p>
+  <strong>Leader:</strong>
+  <%= @instruction.leader_id %>
+</p>
+
+<%= link_to 'Edit', edit_instruction_path(@instruction) %> |
+<%= link_to 'Back', instructions_path %>

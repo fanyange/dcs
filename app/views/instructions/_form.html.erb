@@ -1,0 +1,37 @@
+<%= form_for(instruction) do |f| %>
+  <% if instruction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(instruction.errors.count, "error") %> prohibited this instruction from being saved:</h2>
+
+      <ul>
+      <% instruction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= f.label :deadline %>
+    <%= f.date_select :deadline %>
+  </div>
+
+  <div class="field">
+    <%= f.label :document_id %>
+    <%= f.number_field :document_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :leader_id %>
+    <%= f.number_field :leader_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

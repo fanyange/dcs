@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h2>市政府领导
+<%= link_to '新增', new_leader_path, class: 'btn btn-primary' %>
+</h2>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>姓名</th>
+      <th>职务</th>
+      <th>待办批示</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @leaders.each do |leader| %>
+      <tr>
+        <td><%= link_to leader.name, leader.resume %></td>
+        <td><%= leader.position %></td>
+        <td><%= link_to todo_ins_count(leader), leader, class: "btn btn-#{level(todo_ins_count(leader))}" %></td>
+        <td><%= link_to 'Edit', edit_leader_path(leader), class: 'btn btn-default' %>
+        <%= link_to 'Destroy', leader, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

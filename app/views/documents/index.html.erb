@@ -1,0 +1,26 @@
+<h2>文件列表
+<%= link_to '新增', new_document_path, class: 'btn btn-primary' %>
+</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>收文字号</th>
+      <th>文号</th>
+      <th>文件标题</th>
+      <th>签批领导</th>
+      <th>最后更新时间</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr>
+        <td><%= document.number %></td>
+        <td><%= document.self_number %></td>
+        <td><%= link_to document.title, document %></td>
+        <td><%= document.locations.order(created_at: :desc).first.leader.name %></td>
+        <td><%= document.updated_at.to_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,43 @@
+// Place all the styles related to the documents controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+input#newdoc {
+  margin-top: 15px;
+}
+
+#fileinfo .panel-body {
+  p.little {
+    font-size: 0.8em;
+    color: #888;
+  }
+  ul {
+    padding-left: 0;
+    list-style-type: none;
+  }
+}
+
+#instructions .panel-body {
+  ul.instruction-list {
+    margin-top: 20px;
+    list-style-type: none;
+    padding: 0;
+    li {
+      padding: 10px 0;
+      border-top: 1px solid #e8e8e8;
+    }
+    .leader {
+      margin-top: 5em;
+      padding-top: 0;
+    }
+    .content {
+      display: block;
+      // margin-left: 60px;
+    }
+    .timestamp {
+      color: #888;
+      display: block;
+      // margin-left: 60px;
+    }
+  }
+}
