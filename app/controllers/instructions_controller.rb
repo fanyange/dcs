@@ -2,7 +2,7 @@ class InstructionsController < ApplicationController
   before_action :set_document_and_instruction, only: [:show, :edit, :update, :destroy]
 
   def index
-    @instructions = Instruction.all
+    @instructions = Instruction.order('deadline IS NULL, deadline').order(:created_at => :desc)
   end
 
   def show

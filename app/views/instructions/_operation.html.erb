@@ -1,8 +1,8 @@
 <% if instruction.deadline %>
-  <%= form_for([@document, instruction], html: {class: 'form-done'}) do |f| %>
+  <%= form_for([instruction.document, instruction], html: {class: 'form-done'}) do |f| %>
     <%= f.hidden_field :deadline, value: nil %>
     <%= f.submit '已办', class: 'btn btn-success btn-xs' %>
   <% end %>
 <% end %>
-  <%= link_to '编辑', edit_document_instruction_path(@document, instruction), class: 'btn btn-info btn-xs' %>
-  <%= link_to '删除', document_instruction_path(@document, instruction), method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: '确定删除？'} %>
+  <%= link_to '编辑', edit_document_instruction_path(instruction.document, instruction), class: 'btn btn-info btn-xs' %>
+  <%= link_to '删除', document_instruction_path(instruction.document, instruction), method: :delete, class: 'btn btn-danger btn-xs', data: { confirm: '确定删除？'} %>

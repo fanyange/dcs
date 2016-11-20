@@ -7,6 +7,10 @@
       <span class='leader'><%= link_to instruction.leader.name, instruction.leader %>
     </span>
 
+    <% unless @document %>
+      <span class="document"> 在 《<%= link_to instruction.document.title, instruction.document %>》 上批示：</span>
+    <% end %>
+
     <span class='content'>
       <%= instruction.content %>
       <% if instruction.deadline %>
