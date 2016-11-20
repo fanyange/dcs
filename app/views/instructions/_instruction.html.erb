@@ -1,0 +1,27 @@
+<li id="instruction-<%= instruction.id %>">
+  <div class="row">
+
+
+    <div class="col-md-9">
+
+      <span class='leader'><%= link_to instruction.leader.name, instruction.leader %>
+    </span>
+
+    <span class='content'>
+      <%= instruction.content %>
+      <% if instruction.deadline %>
+        <% timedelta = timeago(instruction.deadline) %>
+        <%= link_to timedelta.first, '#', class: "btn btn-#{timedelta.last} btn-xs deadline" %>
+      <% end %>
+    </span>
+
+    <span class='timestamp'><%= instruction.created_at.to_date %></span>
+    </div>
+
+
+    <div class="col-md-3 operation">
+      <%= render 'instructions/operation', instruction: instruction %>
+    </div>
+  </div>
+</li>
+

@@ -1,37 +1,16 @@
-<%= form_for(instruction) do |f| %>
-  <% if instruction.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(instruction.errors.count, "error") %> prohibited this instruction from being saved:</h2>
-
-      <ul>
-      <% instruction.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for([@document, @instruction]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="form-group">
+    <%= f.text_area :content, class: 'form-control', placeholder: '批示内容' %>
+  </div>
+  <div class="form-inline">
+    <div class="form-group">
+      <%= f.collection_select :leader_id, Leader.order(:order), :id, :name, {}, class: 'form-control' %>
+      <div class="input-group date">
+        <%= f.text_field :deadline, class: 'form-control', placeholder: '截止日期（可选）'  %>
+        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+      </div>
+      <%= f.submit "#{submit or '添加'}", class: 'btn btn-primary' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :content %>
-    <%= f.text_area :content %>
-  </div>
-
-  <div class="field">
-    <%= f.label :deadline %>
-    <%= f.date_select :deadline %>
-  </div>
-
-  <div class="field">
-    <%= f.label :document_id %>
-    <%= f.number_field :document_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :leader_id %>
-    <%= f.number_field :leader_id %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
   </div>
 <% end %>
