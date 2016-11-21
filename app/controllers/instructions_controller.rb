@@ -1,5 +1,6 @@
 class InstructionsController < ApplicationController
   before_action :set_document_and_instruction, only: [:show, :edit, :update, :destroy]
+  before_action :set_referer, only: [:edit, :update, :destroy]
 
   def index
     @instructions = Instruction.order('deadline IS NULL, deadline').order(:created_at => :desc)
@@ -28,7 +29,8 @@ class InstructionsController < ApplicationController
 
   def update
     if @instruction.update(instruction_params)
-      redirect_to @document, notice: 'Instruction was successfully updated.' 
+      redirect_to session[:referer], notice: 'Instruction was successfully created.' 
+      session[:referer] = nil
     else
       render :edit
     end
@@ -36,7 +38,8 @@ class InstructionsController < ApplicationController
 
   def destroy
     @instruction.destroy
-    redirect_to @document, notice: 'Instruction was successfully destroyed.'
+    redirect_to session[:referer]
+    session[:referer] = nil
   end
 
   private
@@ -44,6 +47,10 @@ class InstructionsController < ApplicationController
   def set_document_and_instruction
     @document = Document.find(params[:document_id])
     @instruction = Instruction.find(params[:id])
+  end
+
+  def set_referer
+    session[:referer] ||= request.headers['Referer']
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
