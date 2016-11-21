@@ -20,7 +20,8 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     if @document.save
-      if @document.locations.build(location_params)
+      location = @document.locations.build(location_params)
+      if location.save
         redirect_to documents_path
       else
         render 'new'
