@@ -34,6 +34,9 @@
       <% end %>
 
       <%= f.submit '保存', id: 'newdoc', class: 'btn btn-primary form-control' %>
+      <% if title == '编辑文件信息' %>
+        <%= link_to '删除', @document, method: 'delete', class: 'btn btn-danger form-control', data: { confirm: '确定删除？' } %>
+      <% end %>
 
     <% end %>
   </div>
