@@ -1,4 +1,15 @@
+<% unless @query.blank? %>
+  <div class="alert alert-success alert-dismissible" role='alert'>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>"<%= @query %>":</strong> 找到 <%= @documents.count %> 个文件
+  </div>
+<% end %>
+
 <h2>文件列表
+  <% unless @leader_id.blank? %>
+    - <%= Leader.find(@leader_id).name %>
+<% end %>
+
 <%= link_to '新增', new_document_path, class: 'btn btn-primary' %>
 </h2>
 

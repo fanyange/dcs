@@ -3,7 +3,12 @@ class InstructionsController < ApplicationController
   before_action :set_referer, only: [:edit, :update, :destroy]
 
   def index
-    @instructions = Instruction.order('deadline IS NULL, deadline').order(:created_at => :desc)
+    @leader_id = params[:leader_id]
+    unless @leader_id.blank?
+      @instructions = Leader.find(@leader_id).instructions.where.not(deadline: nil).order('deadline, created_at DESC')
+    else
+      @instructions = Instruction.order('deadline IS NULL, deadline').order(:created_at => :desc)
+    end
   end
 
   def show

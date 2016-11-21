@@ -9,11 +9,11 @@
       <li><%= link_to '领导', leaders_path %></li>
       <li><%= link_to '资料', '#' %></li>
     </ul>
-    <form class="navbar-form" action="">
+    <form class="navbar-form" action="/documents">
       <div class="input-group">
-        <input class="form-control" type="text" placeholder='搜索'>
+        <input class="form-control" name='search' type="text" placeholder='搜索'>
         <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
+          <button class="btn btn-default" type="submit">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           </button>
         </span>

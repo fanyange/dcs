@@ -13,4 +13,8 @@
 
 class Leader < ApplicationRecord
   has_many :instructions, dependent: :destroy
+
+  def working
+    Document.joins(:signed_leaders).order('locations.created_at DESC').group(:id).having('leaders.id = ?', id)
+  end
 end

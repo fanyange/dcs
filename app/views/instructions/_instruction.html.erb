@@ -8,7 +8,7 @@
     </span>
 
     <% unless @document %>
-      <span class="document"> 在 《<%= link_to instruction.document.title, instruction.document %>》 上批示：</span>
+      <%= instruction.leader.position %> <span class="document"> 在 《<%= link_to instruction.document.title, instruction.document %>》 上批示：</span>
     <% end %>
 
     <span class='content'>

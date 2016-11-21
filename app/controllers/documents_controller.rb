@@ -3,7 +3,18 @@ class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
 
   def index
-    @documents = Document.order(updated_at: :desc)
+    @leader_id = params[:leader_id]
+    @query = params[:search]
+
+    unless @leader_id.blank?
+      @documents = Leader.find(@leader_id).working
+    else
+      @documents = Document.order(updated_at: :desc)
+    end
+
+    unless @query.blank?
+      @documents = @documents.where("number like '%#{@query}%' or self_number like '%#{@query}%' or title like '%#{@query}%'")
+    end
   end
 
   def new

@@ -1,5 +1,10 @@
 <div class="container">
-    <h2>领导批示</h2>
+  <h2>
+    领导批示
+    <% unless @leader_id.blank? %>
+      - <%= Leader.find(@leader_id).name %>
+  <% end %>
+  </h2>
     <ul class="instruction-list">
       <%= render @instructions %>
     </ul>
