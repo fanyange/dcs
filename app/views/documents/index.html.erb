@@ -31,7 +31,7 @@
         <td><%= document.self_number %></td>
         <td><%= link_to document.title, document %></td>
         <td><%= document.locations.order(created_at: :desc).first.leader.name %></td>
-        <td><%= document.instructions.count %> <span class='badge'>待办 <%= document.instructions.count(:deadline) %></span></td>
+        <td><%= document.instructions.count %> <span class="label label-<%= level(document.instructions.count(:deadline)) %>">待办 <%= document.instructions.count(:deadline) %></span></td>
         <td><%= document.updated_at.to_date %></td>
       </tr>
     <% end %>

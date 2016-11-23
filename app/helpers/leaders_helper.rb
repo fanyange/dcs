@@ -4,13 +4,6 @@ module LeadersHelper
     ins.where.not(deadline: nil).count
   end
 
-  def level(number_todo)
-    case number_todo
-    when 0 then 'success'
-    when 1..5 then 'warning'
-    else 'danger'
-    end
-  end
 
   def leader_option(leader, f)
     leader_id_map = { f.object.leader_id => true }
