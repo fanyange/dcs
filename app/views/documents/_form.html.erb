@@ -28,7 +28,8 @@
         <div class="form-group">
           <%= fields_for(@document.locations.build) do |loc| %>
             <%= loc.label :leader_id, '签批领导' %>
-            <%= loc.collection_select :leader_id, Leader.order(:order), :id, :name, {}, class: 'form-control' %>
+            <%# <%= loc.collection_select :leader_id, Leader.order(:order), :id, :name, {}, class: 'form-control' %1> %>
+            <%= render 'leaders/chooser', f: loc, datas: {width: '100%'} %>
           <% end %>
         </div>
       <% end %>

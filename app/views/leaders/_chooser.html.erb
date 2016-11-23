@@ -1,0 +1,19 @@
+<%# <%= f.collection_select :leader_id, Leader.order(:order), :id, :name, {}, class: 'selectpicker', "data-live-search" => "true", title: '选择签批领导' %1> %>
+<% datas ||= {} %>
+<%= f.select :leader_id, nil, {}, class: "selectpicker", 'data-live-search' => true, title: '选择签批领导', data: datas do %>
+  <optgroup label='市政府领导'>
+    <% Leader.order(:order).where('"order" < 99').each do |leader| %>
+      <%= leader_option(leader, f) %>
+    <% end %>
+  </optgroup>
+  <optgroup label='副秘书长'>
+    <% Leader.order(:order).where('"order" between 99 and 999').each do |leader| %>
+      <%= leader_option(leader, f) %>
+    <% end %>
+  </optgroup>
+  <optgroup label="科室">
+    <% Leader.order(:order).where('"order" >= 1000').each do |leader| %>
+      <%= leader_option(leader, f) %>
+    <% end %>
+  </optgroup>
+<% end %>

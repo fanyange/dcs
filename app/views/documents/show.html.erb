@@ -29,8 +29,7 @@
         </ul>
         <%= form_for([@document, @document.locations.build], html: { class: 'form-inline' }) do |f| %>
           <div class="form-group">
-            <%= f.label :leader_id, '选择签批领导：' %>
-            <%= f.collection_select :leader_id, Leader.order(:order), :id, :name, {}, class: 'form-control' %>
+            <%= render 'leaders/chooser', f: f, datas: { width: 'fit' } %>
             <%= f.submit '更新', class: 'btn btn-primary' %>
           </div>
         <% end %>

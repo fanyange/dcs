@@ -17,6 +17,8 @@
 //= require_tree .
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker.zh-CN.min
+//= require bootstrap-select.min
+//= require defaults-zh_CN.min
 
 $(document).on('turbolinks:load', function () {
   $('.input-group.date').datepicker({
@@ -25,5 +27,7 @@ $(document).on('turbolinks:load', function () {
     language: "zh-CN",
     todayHighlight: true
   });
+
+  $('.selectpicker').selectpicker();
 })
 

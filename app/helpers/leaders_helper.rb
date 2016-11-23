@@ -11,4 +11,9 @@ module LeadersHelper
     else 'danger'
     end
   end
+
+  def leader_option(leader, f)
+    leader_id_map = { f.object.leader_id => true }
+    content_tag(:option, leader.name, value: leader.id, selected: leader_id_map[leader.id], data: { subtext: leader.pinyin })
+  end
 end
