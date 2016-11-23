@@ -27,7 +27,5 @@ $(document).on('turbolinks:load', function () {
     language: "zh-CN",
     todayHighlight: true
   });
-
-  $('.selectpicker').selectpicker();
 })
 
