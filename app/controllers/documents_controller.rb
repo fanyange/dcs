@@ -1,20 +1,33 @@
 class DocumentsController < ApplicationController
 
   before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
+
+  def all_index
+    if helpers.current_user.admin
+      @documents = Document.order(updated_at: :desc).paginate(page: params[:page])
+      render :index
+    else
+      flash[:warning] = '权限不足'
+      redirect_to root_path
+    end
+  end
 
   def index
     @leader_id = params[:leader_id]
     @query = params[:search]
 
     unless @leader_id.blank?
-      @documents = Leader.find(@leader_id).working
+      @documents = Leader.find(@leader_id).working.paginate(page: params[:page])
     else
-      @documents = Document.order(updated_at: :desc)
+      @documents = Document.order(updated_at: :desc).paginate(page: params[:page])
     end
 
     unless @query.blank?
       @documents = @documents.where("number like '%#{@query}%' or self_number like '%#{@query}%' or title like '%#{@query}%'")
     end
+
+    @documents = @documents.of(helpers.current_user)
   end
 
   def new
@@ -33,6 +46,7 @@ class DocumentsController < ApplicationController
     if @document.save
       location = @document.locations.build(location_params)
       if location.save
+        flash[:success] = '成功创建文件'
         redirect_to documents_path
       else
         render 'new'

@@ -16,7 +16,7 @@
       <tr>
         <td><%= link_to leader.name, leader.resume %></td>
         <td><%= leader.position %></td>
-        <td><%= link_to leader.working.count.count, documents_path(leader_id: leader.id), class: "btn btn-#{level(leader.working.count.count)}" %></td>
+        <td><%= link_to working_doc_count(leader), documents_path(leader_id: leader.id), class: "btn btn-#{level(working_doc_count(leader))}" %></td>
         <td><%= link_to todo_ins_count(leader), instructions_path(leader_id: leader.id), class: "btn btn-#{level(todo_ins_count(leader))}" %></td>
       </tr>
     <% end %>

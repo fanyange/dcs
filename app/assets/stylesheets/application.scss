@@ -19,6 +19,38 @@
 
 p {
   font-size: 1.1em;
+  margin-top: 15px;
+}
+
+#main {
+  margin-top: 72px;
+}
+
+.jumbotron {
+
+  h1 {
+    font-size: 3em;
+    margin-bottom: 30px;
+  }
+  p {
+    margin-bottom: 1.7em;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+}
+
+.checkbox {
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
 }
 
 ul.instruction-list {

@@ -1,7 +1,7 @@
 <%= form_for([@document, @instruction]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="form-group">
-    <%= f.text_area :content, class: 'form-control', placeholder: '批示内容' %>
+    <%= f.text_area :content, class: 'form-control', placeholder: '批示内容', required: true %>
   </div>
   <div class="form-inline">
     <div class="form-group">

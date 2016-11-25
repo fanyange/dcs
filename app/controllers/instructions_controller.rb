@@ -1,14 +1,17 @@
 class InstructionsController < ApplicationController
   before_action :set_document_and_instruction, only: [:show, :edit, :update, :destroy]
   before_action :set_referer, only: [:edit, :update, :destroy]
+  before_action :logged_in_user
 
   def index
     @leader_id = params[:leader_id]
     unless @leader_id.blank?
-      @instructions = Leader.find(@leader_id).instructions.where.not(deadline: nil).order('deadline, created_at DESC')
+      @instructions = Leader.find(@leader_id).instructions.where.not(deadline: nil).order('deadline, created_at DESC').paginate(page: params[:page])
     else
-      @instructions = Instruction.order('deadline IS NULL, deadline').order(:created_at => :desc)
+      @instructions = Instruction.order('deadline IS NULL, deadline').order(:created_at => :desc).paginate(page: params[:page])
     end
+
+    @instructions = @instructions.of(helpers.current_user)
   end
 
   def show
@@ -26,7 +29,7 @@ class InstructionsController < ApplicationController
     @instruction = @document.instructions.build(instruction_params)
 
     if @instruction.save
-      redirect_to @document, notice: 'Instruction was successfully created.' 
+      redirect_to @document
     else
       render 'documents/show'
     end
@@ -34,7 +37,7 @@ class InstructionsController < ApplicationController
 
   def update
     if @instruction.update(instruction_params)
-      redirect_to session[:referer], notice: 'Instruction was successfully created.' 
+      redirect_to session[:referer]
       session[:referer] = nil
     else
       render :edit

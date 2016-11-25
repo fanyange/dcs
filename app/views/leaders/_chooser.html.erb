@@ -1,6 +1,6 @@
 <%# <%= f.collection_select :leader_id, Leader.order(:order), :id, :name, {}, class: 'selectpicker', "data-live-search" => "true", title: '选择签批领导' %1> %>
 <% datas ||= {} %>
-<%= f.select :leader_id, nil, {}, class: "selectpicker", 'data-live-search' => true, title: '选择签批领导', data: datas do %>
+<%= f.select :leader_id, nil, {}, class: "selectpicker", 'data-live-search' => true, title: '选择签批领导', data: datas, required: true do %>
   <optgroup label='市政府领导'>
     <% Leader.order(:order).where('"order" < 99').each do |leader| %>
       <%= leader_option(leader, f) %>

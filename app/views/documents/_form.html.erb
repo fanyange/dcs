@@ -20,11 +20,11 @@
 
       <div class="form-group">
         <%= f.label :title, '文件标题' %>
-        <%= f.text_field :title, class: 'form-control' %>
+        <%= f.text_field :title, class: 'form-control', required: true %>
       </div>
 
 
-      <% if current_page?(action: 'new') %>
+      <% if current_page?(action: :new) or current_page?(action: :create) %>
         <div class="form-group">
           <%= fields_for(@document.locations.build) do |loc| %>
             <%= loc.label :leader_id, '签批领导' %>
@@ -35,7 +35,7 @@
       <% end %>
 
       <%= f.submit '保存', id: 'newdoc', class: 'btn btn-primary form-control' %>
-      <% if title == '编辑文件信息' %>
+      <% unless current_page?(action: :new) or current_page?(action: :create) %>
         <%= link_to '删除', @document, method: 'delete', class: 'btn btn-danger form-control', data: { confirm: '确定删除？' } %>
       <% end %>
 

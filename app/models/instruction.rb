@@ -15,6 +15,8 @@ class Instruction < ApplicationRecord
   belongs_to :document, touch: true
   belongs_to :leader
 
+  scope :of, ->(user) { joins(document: [:user]).where('users.group_id = ?', user.group_id) }
+
   validates :content, presence: { message: '批示内容不能为空' }
   validates :leader_id, presence: true
 end
