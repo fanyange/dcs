@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125120915) do
+ActiveRecord::Schema.define(version: 20161129025653) do
 
   create_table "documents", force: :cascade do |t|
     t.string   "title"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(version: 20161125120915) do
     t.datetime "updated_at",  null: false
     t.string   "self_number"
     t.integer  "user_id"
+    t.index ["number"], name: "index_documents_on_number"
+    t.index ["self_number"], name: "index_documents_on_self_number"
+    t.index ["title"], name: "index_documents_on_title", unique: true
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 

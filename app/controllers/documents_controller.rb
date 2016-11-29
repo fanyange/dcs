@@ -43,14 +43,10 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(document_params)
+    @document.locations.build(location_params)
     if @document.save
-      location = @document.locations.build(location_params)
-      if location.save
-        flash[:success] = '成功创建文件'
-        redirect_to documents_path
-      else
-        render 'new'
-      end
+      flash[:success] = '成功创建文件'
+      redirect_to documents_path
     else
       render 'new'
     end

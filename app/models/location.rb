@@ -13,6 +13,6 @@ class Location < ApplicationRecord
   belongs_to :document, touch: true
   belongs_to :leader
 
-  validates :document_id, presence: true
+  # validates :document_id, presence: true
   validates :leader_id, presence: true
 end
