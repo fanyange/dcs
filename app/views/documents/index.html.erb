@@ -22,6 +22,10 @@
       <th>签批领导</th>
       <th>批示总计</th>
       <th>最后更新时间</th>
+      <% if current_user.admin %> 
+        <th>创建人</th>
+        <th>操作</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -33,6 +37,13 @@
         <td><%= document.locations.any? ? document.locations.order(created_at: :desc).first.leader.name : '无' %></td>
         <td><%= document.instructions.count %> <span class="label label-<%= level(document.instructions.count(:deadline)) %>">待办 <%= document.instructions.count(:deadline) %></span></td>
         <td><%= document.updated_at.to_date %></td>
+        <% if current_user.admin %>
+          <td><%= document.user.name %></td>
+          <td>
+            <%= link_to '编辑', edit_document_path(document), class: 'btn btn-info' %>
+            <%= link_to '删除', document_path(document), method: :delete, data: { confirm: '确定删除？' }, class: 'btn btn-danger' %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
