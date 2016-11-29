@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129025653) do
+ActiveRecord::Schema.define(version: 20161129062226) do
 
   create_table "documents", force: :cascade do |t|
     t.string   "title"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20161129025653) do
     t.integer  "leader_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["document_id"], name: "index_locations_on_document_id"
+    t.index ["leader_id"], name: "index_locations_on_leader_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -8,6 +8,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  self_number :string
+#  user_id     :integer
 #
 
 class Document < ApplicationRecord

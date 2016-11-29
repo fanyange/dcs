@@ -4,6 +4,29 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(setting_params)
+      flash[:success] = '设置成功'
+      redirect_to action: 'edit'
+    else
+      render 'edit'
+    end
+  end
+
+  def update_password
+    @user = User.find(params[:id])
+    if @user.update(password_params)
+      flash[:success] = '设置成功'
+      redirect_to action: 'edit'
+    else
+      render 'edit'
+    end
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -22,5 +45,13 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :group_id, :password, :password_confirmation)
+  end
+
+  def setting_params
+    params.require(:user).permit(:name, :email, :group_id)
+  end
+
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
   end
 end

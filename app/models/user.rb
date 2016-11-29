@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  name            :string
+#  email           :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  password_digest :string
+#  group_id        :integer
+#  admin           :boolean          default(FALSE)
+#  remember_digest :string
+#
+
 class User < ApplicationRecord
   attr_accessor :remember_token
   has_many :documents
@@ -12,7 +27,7 @@ class User < ApplicationRecord
     uniqueness: { case_sensitive: false }
 
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, on: :create
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost

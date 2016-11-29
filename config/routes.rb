@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
 
   root to: 'static_pages#home'
+
+  put '/users/:id/update_password', to: 'users#update_password'
   resources :users
   resources :instructions
   resources :leaders

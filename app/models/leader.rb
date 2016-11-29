@@ -9,6 +9,7 @@
 #  resume     :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  pinyin     :string
 #
 
 class Leader < ApplicationRecord
