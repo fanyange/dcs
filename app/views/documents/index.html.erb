@@ -24,7 +24,6 @@
       <th>最后更新时间</th>
       <% if current_user.admin %> 
         <th>创建人</th>
-        <th>操作</th>
       <% end %>
     </tr>
   </thead>
@@ -39,10 +38,6 @@
         <td><%= document.updated_at.to_date %></td>
         <% if current_user.admin %>
           <td><%= document.user.name %></td>
-          <td>
-            <%= link_to '编辑', edit_document_path(document), class: 'btn btn-info' %>
-            <%= link_to '删除', document_path(document), method: :delete, data: { confirm: '确定删除？' }, class: 'btn btn-danger' %>
-          </td>
         <% end %>
       </tr>
     <% end %>
