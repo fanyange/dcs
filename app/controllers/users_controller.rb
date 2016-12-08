@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_current_user, only: [:edit, :destroy]
+
   def new
     @user = User.new
   end
@@ -53,5 +55,12 @@ class UsersController < ApplicationController
 
   def password_params
     params.require(:user).permit(:password, :password_confirmation)
+  end
+
+  def ensure_current_user
+    unless @user == helpers.current_user
+      flash['warning'] = '权限不足'
+      redirect_to root_url 
+    end
   end
 end
