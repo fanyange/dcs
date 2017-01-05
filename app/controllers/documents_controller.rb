@@ -46,7 +46,7 @@ class DocumentsController < ApplicationController
     @document.locations.build(location_params)
     if @document.save
       flash[:success] = '成功创建文件'
-      redirect_to documents_path
+      redirect_to @document
     else
       render 'new'
     end
