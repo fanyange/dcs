@@ -71,7 +71,7 @@ class DocumentsController < ApplicationController
   end
 
   def document_params
-    params.require(:document).permit(:title, :number, :self_number, :user_id)
+    params.require(:document).permit(:title, :number, :self_number, :user_id, :comment)
   end
 
   def location_params
