@@ -43,6 +43,7 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(document_params)
+    @document.user_id = helpers.current_user.id
     @document.locations.build(location_params)
     if @document.save
       flash[:success] = '成功创建文件'
@@ -71,7 +72,7 @@ class DocumentsController < ApplicationController
   end
 
   def document_params
-    params.require(:document).permit(:title, :number, :self_number, :user_id, :comment)
+    params.require(:document).permit(:title, :number, :self_number, :comment)
   end
 
   def location_params
