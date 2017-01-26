@@ -9,6 +9,7 @@
 #  updated_at  :datetime         not null
 #  self_number :string
 #  user_id     :integer
+#  comment     :text
 #
 
 class Document < ApplicationRecord
