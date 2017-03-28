@@ -5,7 +5,7 @@ class LeadersController < ApplicationController
   # GET /leaders
   # GET /leaders.json
   def index
-    @leaders = Leader.order(:order)
+    @leaders = Leader.where(visible: true).order(:order)
   end
 
   # GET /leaders/1

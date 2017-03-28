@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170105013217) do
+ActiveRecord::Schema.define(version: 20170328080648) do
 
   create_table "documents", force: :cascade do |t|
     t.string   "title"
@@ -40,9 +40,10 @@ ActiveRecord::Schema.define(version: 20170105013217) do
     t.string   "position"
     t.integer  "order"
     t.text     "resume"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "pinyin"
+    t.boolean  "visible",    default: true
   end
 
   create_table "locations", force: :cascade do |t|
